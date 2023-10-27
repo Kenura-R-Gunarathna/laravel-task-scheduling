@@ -12,7 +12,23 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('inspire')->everyMinute()->appendOutputTo("./storage/logs/scheduler-output.log");
+        $schedule->command('app:check:ad-promotions')
+                ->everyMinute()
+                ->runInBackground()
+                ->withoutOverlapping()
+                ->appendOutputTo("./storage/logs/check-ad-promotions.log");
+
+        $schedule->command('app:check:memberships')
+                ->everyMinute()
+                ->runInBackground()
+                ->withoutOverlapping()
+                ->appendOutputTo("./storage/logs/check-ad-promotions.log");
+
+        $schedule->command('app:run:bump-ad')
+                ->everyMinute()
+                ->runInBackground()
+                ->withoutOverlapping()
+                ->appendOutputTo("./storage/logs/check-ad-promotions.log");
     }
 
     /**

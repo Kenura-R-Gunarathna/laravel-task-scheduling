@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->foreignIdFor(User::class);
             $table->timestamps();
+            $table->dateTime('bumped_at', $precision = 0)->default(now())->comment('This will be post rendering order, Alterning this can jump the post higher in order.');
         });
     }
 
