@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
                 ->appendOutputTo("./storage/logs/check-ad-promotions.log");
 
         $schedule->command('app:run:bump-ad')
-                ->everyMinute()
+                ->everyTwoMinutes()
                 ->runInBackground()
                 ->withoutOverlapping()
                 ->appendOutputTo("./storage/logs/check-ad-promotions.log");
